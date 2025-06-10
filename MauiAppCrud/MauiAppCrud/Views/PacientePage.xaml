@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppCrud.Views.PacientePage"
+             Title="{Binding TituloPagina}"
+             BackgroundColor="#f5f5f5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <!-- Indicador de carga -->
+            <ActivityIndicator 
+                IsVisible="{Binding LoadingEsVisible}" 
+                IsRunning="{Binding LoadingEsVisible}"
+                Color="#2196F3"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"/>
+
+            <!-- Campos del formulario -->
+            <Label Text="Nombre" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+            <Frame Padding="0" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <Entry Text="{Binding PacienteDtO.Nombre}" Placeholder="Ingrese el nombre" />
+            </Frame>
+
+            <Label Text="Apellido" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+            <Frame Padding="0" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <Entry Text="{Binding PacienteDtO.Apellido}" Placeholder="Ingrese el apellido" />
+            </Frame>
+
+            <Label Text="Edad" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+            <Frame Padding="0" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <Entry x:Name="EdadEntry"
+                       Text="{Binding PacienteDtO.Edad, Mode=TwoWay}"
+                       Keyboard="Numeric"
+                       Placeholder="Solo números"
+                       TextChanged="EdadEntry_TextChanged" />
+            </Frame>
+
+            <Label Text="Peso en kg" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+            <Frame Padding="0" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <Entry x:Name="PesoEntry"
+                       Text="{Binding PacienteDtO.Peso, Mode=TwoWay}"
+                       Keyboard="Numeric"
+                       Placeholder="Ej. 70.5"
+                       TextChanged="PesoEntry_TextChanged" />
+            </Frame>
+
+            <Label Text="Estatura (cm)" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+            <Frame Padding="0" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <Entry x:Name="EstaturaEntry"
+                       Text="{Binding PacienteDtO.Estatura, Mode=TwoWay}"
+                       Keyboard="Numeric"
+                       Placeholder="Ej. 170"
+                       TextChanged="EstaturaEntry_TextChanged" />
+            </Frame>
+
+            <Label Text="Sexo" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+            <Frame Padding="6,0" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <Picker Title="Selecciona tu sexo"
+                        SelectedItem="{Binding PacienteDtO.Sexo}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Masculino</x:String>
+                            <x:String>Femenino</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Frame>
+
+            <Label Text="Nivel de Actividad" FontAttributes="Bold" FontSize="14" TextColor="#333"/>
+            <Frame Padding="6,0" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                <Picker Title="Seleccione un nivel"
+                        SelectedItem="{Binding PacienteDtO.NivelActividad}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Sedentario</x:String>
+                            <x:String>Ligero</x:String>
+                            <x:String>Moderado</x:String>
+                            <x:String>Activo</x:String>
+                            <x:String>Muy activo</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Frame>
+
+            <!-- Botón Guardar -->
+            <Button 
+                Text="💾 Guardar"
+                Command="{Binding GuardarCommand}"
+                BackgroundColor="#4CAF50"        
+                FontSize="18"
+                FontAttributes="Bold"
+                TextColor="White"
+                CornerRadius="20"
+                Padding="16,10"
+                HeightRequest="55"
+          
+                HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
